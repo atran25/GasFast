@@ -31,6 +31,7 @@ Steps to run the application:
 4. Replace "#API-KEY-HERE" with your EthGasStation api key
    1. EthGasStation api key can be obtained from https://data.defipulse.com/
    2. After registering and logging in, go to the dashboard(https://data.defipulse.com/dashboard/egs) and you should find a section containing the api key
+   3. NOTE: EthGasStation uses the units gwei \* 10 for their gas prices, so divide it by 10 to get just gwei
 5. Open a terminal and navigate to the project directory
 6. Run docker-compose up
    1. Stop the application using docker-compose down
@@ -45,12 +46,14 @@ Steps to run the application:
       1. `{"error": true, "message": <some error message>}`
    2. In case of a successful result:
       1. `{"error": false, "message": {"fast": 163, "average": 157, "low": 120, "blockNum": 14266298}}`
+      2. The units for fast, average, and low are in gwei
 2. `GET` "/average?fromTime={#}&toTime={#}"
    1. Replace #'s with an integer representing unix time
    2. In case of an error result will be:
       1. `{"error": true, "message": <some error message>}`
    3. In case of a successful result:
       1. `{"error": false, "message": {"averageFastGasPrice": 163, "averageGasPrice": 129, "averageLowGasPrice": 117, "fromTime": "1645672341", "toTime": "1645672341"}}`
+      2. The units for averageFastGasPrice, averageGasPrice, and averageLowGasPrice are in gwei
 3. `GET` "gasprices"
    1. Returns all the gasPrice objects inside the database
 
